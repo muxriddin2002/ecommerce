@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block script %}
+    <script type="text/javascript">
+
+
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    {% include 'main/header.html' %}
+
+{#   Trendding Products    #}
+
+    {% include 'products/trendding_products.html' %}
+
+{#  Hot Deals Products  #}
+    {% include 'products/hot_deals.html' %}
+
+{#    Featured Products        #}
+
+    {% include 'products/featured_products.html' %}
+
+{#  Category - Products  #}
+    {% include 'products/products_category.html' %}
+
+{#   Banner     #}
+    {% include 'products/banner.html' %}
+
+{#  Mini cart  #}
+    {% include 'products/min_deals.html' %}
+
+
+{% endblock %}

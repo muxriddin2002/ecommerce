@@ -1,0 +1,19 @@
+.table-tr {
+    background: #333333;
+}
+
+.table-tr th{
+    color: #fff;
+}
+
+.send-icon{
+    color: #00B5E9;
+}
+.delete-icon {
+    color: #FA4251;
+}
+
+.edit-icon{
+
+    color: #FF8300;
+}

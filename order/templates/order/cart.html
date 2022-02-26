@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block script %}
+
+{% endblock script %}
+
+{% block content %}
+
+     <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active">Shopping Cart</li>
+                </ul>
+            </div>
+        </div>
+     </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!-- Error 404 Area Start -->
+
+    <div class="Shopping-cart-area pt-60 pb-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <form action="{% url 'checkout' %}" method="post"> {% csrf_token %}
+                                <div class="table-content table-responsive">
+                                    <table id="cart-table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="li-product-remove"><i class="bi bi-trash"></i>remove</th>
+                                                <th class="li-product-thumbnail"><i class="bi bi-image-fill"></i>images</th>
+                                                <th class="cart-product-name"><i class="bi bi-grid"></i>Product</th>
+                                                <th class="li-product-price"><i class="bi bi-cash"></i>Unit Price</th>
+                                                <th class="li-product-quantity"><i class="bi bi-list-ol"></i>Quantity</th>
+                                                <th class="li-product-subtotal"><i class="bi bi-cash-coin"></i>Total</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            {% for item in userCart.items %}
+                                                <tr>
+                                                    <td data-item="{{ item.id }}" class="li-product-remove remove-cart"><i class="fa fa-times"></i></td>
+                                                    <td class="li-product-thumbnail"><img src="{{ item.get_product.img.url }}" height="75px" width="auto" alt="product Image"></td>
+                                                    <td class="li-product-name"><a href="{% url 'product-detail' item.product.id %}">{{ item.product.name }}</a></td>
+                                                    <td class="li-product-price"><span class="amount">${{ item.product.price }}</span></td>
+
+                                                    {% if item.product.quantity > 0 %}
+                                                        <td class="quantity">
+                                                            <div class="cart-plus-minus">
+                                                                <div class="cart-plus-minus-box" >
+                                                                <strong>{{ item.quantity }}</strong></div>
+
+                                                                <div data-cart="order" data-action="add" data-product="{{ item.product.id }}" class="inc qtybutton update-cart"><i class="fa fa-angle-up"></i></div>
+                                                                <div data-cart="order" data-action="remove" data-product="{{ item.product.id }}" class="dec qtybutton update-cart"><i class="fa fa-angle-down"></i></div>
+
+                                                            </div>
+
+                                                        </td>
+                                                        <td class="product-subtotal"><span class="amount">${{ item.get_total_price }}</span></td>
+                                                    {% else %}
+                                                        <td class="quantity">
+                                                            <div>
+                                                                <p class="text-danger">Not available</p>
+                                                            </div>
+                                                        </td>
+
+                                                        <td class="product-subtotal"><span class="amount text-danger">$0</span></td>
+                                                    {% endif %}
+
+                                                </tr>
+
+                                              {% endfor %}
+
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="coupon-all">
+                                            <div class="coupon">
+                                                <input id="coupon_code" class="input-text" name="coupon_code" value="" placeholder="Coupon code" type="text">
+                                                <span class="button">Apply Coupon</span>
+                                            </div>
+                                            <div class="coupon2">
+                                                <span class="button">Update Cart</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 ml-auto">
+                                        <div class="cart-page-total">
+                                            <h2>Cart totals</h2>
+                                            <ul>
+                                                <li>Total number <span>{{ userCart.order.get_cart_total }}</span></li>
+                                                <li>Total <span>${{ userCart.order.get_total_price | floatformat:2 }}</span></li>
+                                            </ul>
+{#                                            {% if user.is_authenticated and order and order.get_total_price > 0 %}#}
+                                                <div class="mt-3">
+                                                    <input class="button" type="submit" value="Proceed to checkout">
+                                                </div>
+{#                                            {% else %}#}
+{#                                                <div class="mt-3">#}
+{#                                                    <span class="button">Proceed to checkout</span>#}
+{#                                                </div>#}
+{#                                            {% endif %}#}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock %}

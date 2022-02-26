@@ -1,0 +1,85 @@
+#profile-table i {
+    position: relative;
+    left: -15px;
+    top: 4px;
+    font-size: 25px;
+}
+
+#profile-table thead th {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: Arial;
+}
+
+#profile-item i {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    left: -5px;
+    margin-right: 8px;
+
+
+}
+#profile-item hr {
+    padding: 0;
+    margin: 0;
+}
+
+#cart-table thead i {
+    position: relative;
+    left: -15px;
+    top: 4px;
+    font-size: 25px;
+}
+
+#cart-table thead th {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: Arial;
+}
+
+#alert {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.hidden {
+    display: none;
+}
+
+.old-price-2 {
+    font-family: "Helvetica Neue";
+    font-size: 24px;
+    color: #666;
+    text-decoration: line-through #555555;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#count-add {
+    padding-top: 0;
+}
+
+.register-error {
+    font-size:15px;
+}
+
+.wishlist1 {
+    width: 100%;
+    display: inline-block;
+}
+
+.select-input {
+
+}
+
+
+
+.text-input:focus {
+    background-color: transparent;
+    border: 1px solid #424040;
+}

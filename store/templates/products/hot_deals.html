@@ -1,0 +1,102 @@
+ {% load static %}
+ <section class="product-area li-laptop-product Special-product pt-60 pb-45">
+        <div class="container">
+            <div class="row">
+                <!-- Begin Li's Section Area -->
+                <div class="col-lg-12">
+                    <div class="li-section-title">
+                        <h2>
+                            <span>Hot Deals Products</span>
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="special-product-active owl-carousel">
+                            {% for product in products.discounted %}
+                                <div class="col-lg-12">
+                                <!-- single-product-wrap start -->
+                                <div class="single-product-wrap">
+                                    <div class="product-image">
+{#                                        <a href="single-product.html">#}
+                                            <img src="{{ product.img.url }}" height="180px" width="auto" alt="Li's Product Image">
+{#                                        </a>#}
+                                        <span class="sticker">New</span>
+                                    </div>
+                                    <div class="product_desc">
+                                        <div class="product_desc_info">
+                                            <div class="product-review">
+                                                <h5 class="manufacturer">
+                                                    <span data-quantity="{{ product.quantity }}" class="available"></span>
+                                                </h5>
+                                                <div class="rating-box">
+                                                    <ul class="rating">
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <h4><a class="product_name" href="{% url 'product-detail' product.id %}">{{ product.name }}</a></h4>
+                                            <div class="price-box">
+                                                <span data-price="{{ product.price }}"
+                                                      data-discount="{{ product.get_discount }}"
+                                                      data-discountprice="{{ product.get_price_discount }}"
+                                                      class="new-price product-price">${{ product.price }}</span>
+                                            </div>
+                                            <div class="countersection">
+                                                <div   data-endtime="{{ product.get_discount_endTime }}" class="li-countdown">
+                                                    <div class="count day">
+                                                        00
+                                                        <span>day:</span>
+                                                    </div>
+                                                    <div class="count hour">
+                                                        00
+                                                        <span>hour:</span>
+                                                    </div>
+                                                    <div class="count minut">
+                                                        00
+                                                        <span>min:</span>
+                                                    </div>
+                                                    <div id="second" class="count second">
+                                                        00
+                                                        <span>sec:</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="add-actions">
+                                            <ul class="add-actions-link">
+
+                                                                    <li data-cart="order"
+                                                                        data-quantity="{{ product.quantity }}"
+                                                                        data-action="add"
+                                                                        class="add-cart active update-cart"
+                                                                        data-product="{{ product.id }}">Add to cart</li>
+
+                                                                {% if product in selected %}
+                                                                    <li class="links-details"><i class="fa fa-heart"></i></li>
+                                                                {% else %}
+                                                                    <li data-cart="wishlist"
+                                                                        data-product="{{ product.id }}"
+                                                                        data-action="add"
+                                                                        data-wishlist="{{ wishlist.get_selected }}"
+                                                                        class="links-details update-cart">
+                                                                        <i class="fa fa-heart-o"></i></li>
+                                                                {% endif %}
+                                                                <li class="product-detail links-details" data-product="{{ product.get_info }}"><span class="quick-view" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></span></li>
+                                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- single-product-wrap end -->
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Li's Section Area End Here -->
+            </div>
+        </div>
+    </section>

@@ -1,0 +1,101 @@
+  {% load static %}
+   <div class="featured-pro-with-banner mt-sm-5 pb-sm-10 mt-xs-5 pb-xs-10">
+                <div class="container">
+                    <div class="row">
+                        <!-- Begin Li's Featured Banner Area -->
+                        <div class="col-lg-3 text-center">
+                            <div class="single-banner featured-banner">
+                                <a href="#">
+                                    <img src="{% static 'images/banner/featured-banner.jpg' %}" alt="Li's Featured Banner">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Li's Featured Banner Area End Here -->
+                        <!-- Begin Featured Product Area -->
+                        <div class="col-lg-9">
+                            <div class="featured-product pt-sm-30 pt-xs-30">
+                                <div class="li-section-title">
+                                    <h2>
+                                        <span>Featured Products</span>
+                                    </h2>
+                                </div>
+                                <div class="row">
+
+
+
+
+                                    <div class="featured-product-active owl-carousel">
+
+
+{#                                        <div class="featured-product-bundle">#}
+                                            {% for product in products.featured_products %}
+
+                                                <div class="featured-pro-wrapper">
+                                                    <div class="product-img">
+    {#                                                    <a href="product-details.html">#}
+                                                            <img alt="" src="{{ product.img.url }}">
+    {#                                                    </a>#}
+                                                    </div>
+                                                    <div class="featured-pro-content">
+                                                        <div class="product-review">
+                                                            <h5 class="manufacturer">
+                                                                <a href="{% url 'product-detail' product.id %}">{{ product.category }}</a>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="rating-box">
+                                                            <ul class="rating">
+                                                                <li><i class="fa fa-star-o"></i></li>
+                                                                <li><i class="fa fa-star-o"></i></li>
+                                                                <li><i class="fa fa-star-o"></i></li>
+                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                                <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                            </ul>
+                                                        </div>
+                                                        <h4><a class="featured-product-name" href="{% url 'product-detail' product.id %}">{{ product.name }}</a></h4>
+                                                        <div class="featured-price-box">
+                                                            <span data-price="{{ product.price }}"
+                                                              data-discount="{{ product.get_discount }}"
+                                                              data-discountprice="{{ product.get_price_discount }}"
+
+                                                              class="new-price product-price">${{ product.price }}</span>
+{#                                                            <span class="new-price">${{ product.price }}</span>#}
+                                                        </div>
+                                                        <div class="featured-product-action">
+                                                            <ul class="add-actions-link">
+
+                                                                    <li data-cart="order"
+                                                                        data-quantity="{{ product.quantity }}"
+                                                                        data-action="add"
+                                                                        class="add-cart active update-cart"
+                                                                        data-product="{{ product.id }}">Add to cart</li>
+
+                                                                {% if product in userCart.selected %}
+                                                                    <li class="links-details"><i class="fa fa-heart"></i></li>
+                                                                {% else %}
+                                                                    <li data-cart="wishlist"
+                                                                        data-product="{{ product.id }}"
+                                                                        data-action="add"
+                                                                        data-wishlist="{{ wishlist.get_selected }}"
+                                                                        class="links-details update-cart">
+                                                                        <i class="fa fa-heart-o"></i></li>
+                                                                {% endif %}
+                                                                <li class="product-detail links-details" data-toggle="modal" data-target="#exampleModalCenter" data-product="{{ product.get_info }}"><span class="quick-view"><i class="fa fa-eye"></i></span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+
+                                    </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Featured Product Area End Here -->
+                    </div>
+                </div>
+            </div>

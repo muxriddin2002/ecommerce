@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+      <div class="breadcrumb-area">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Wishlist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Breadcrumb Area End Here -->
+            <!--Wishlist Area Strat-->
+    <div class="wishlist-area pt-60 pb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="table-content table-responsive">
+                            <table id="profile-table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="li-product-remove"><i class="bi bi-calendar-check"></i>Date ordered </th>
+                                        <th class="li-product-thumbnail"><i class="bi bi-card-checklist"></i>Items</th>
+                                        <th class="cart-product-name"><i class="bi bi-globe"></i>Shipping adress</th>
+                                        <th class="li-product-price"><i class="bi bi-cash-coin"></i>Price</th>
+                                        <th class="li-product-stock-status"><i class="bi bi-truck"></i>Condition</th>
+                                        <th class="li-product-add-cart"><i class="bi bi-check-circle"></i>Complete</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size: 20px">
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td class="li-product-price">{{ order.date_ordered }}</td>
+                                            <td class="li-product-price">{{ order.get_cart_total }}</td>
+                                            <td class="li-product-price"><a href="#">{{ order.get_shipping_adress }}</a></td>
+                                            <td class="li-product-price"><span class="amount">${{ order.get_total_price }}</span></td>
+                                            <td class="li-product-stock-status"><div class="text-danger">{{ order.accepted }}</div></td>
+                                            <td class="">
+                                                <input style="height: 15px;" type="checkbox">
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!--Wishlist Area End-->
+
+{% endblock %}

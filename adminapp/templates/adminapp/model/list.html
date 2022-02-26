@@ -1,0 +1,141 @@
+{% extends 'adminapp/base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="p-t-20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="title-5 m-b-35">data table</h3>
+                <div class="table-data__tool">
+                    <div class="table-data__tool-left">
+                        <div class="rs-select2--light rs-select2--md">
+                            <select class="js-select2" name="property">
+                                <option selected="selected">All Properties</option>
+                                <option value="">Delete</option>
+
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        <div class="rs-select2--light rs-select2--sm">
+                            <select class="js-select2" name="time">
+                                <option selected="selected">Today</option>
+                                <option value="">3 Days</option>
+                                <option value="">1 Week</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        <button class="au-btn-filter">
+                            <i class="zmdi zmdi-filter-list"></i>filters</button>
+                    </div>
+                    <div class="table-data__tool-right">
+                        <a href="{% url 'product-create' %}">
+                            <button class="au-btn au-btn-icon au-btn--black au-btn--small">
+                            <i class="zmdi zmdi-plus"></i>add item</button>
+                        </a>
+                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                            <select class="js-select2" name="type">
+                                <option selected="selected">Export</option>
+                                <option value="">Option 1</option>
+                                <option value="">Option 2</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr class="table-tr">
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input id="all-check" type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                               <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in products %}
+                                <tr class="tr-shadow">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input class="check__box" type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+
+
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.price }}</td>
+                                    <td>{{ i.quantity }}</td>
+                                    <td>{{ i.category }}</td>
+                                    <td>{{ i.date }}</td>
+
+
+
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                            <i class="zmdi zmdi-mail-send  send-icon"></i>
+                                        </button>
+                                        <a href="{% url 'product-update' i.id %}">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit  edit-icon"></i>
+                                        </button>
+                                        </a>
+
+                                            <button class="item delete-btn" data-product="{{ i.get_info }}" data-toggle="modal" data-target="#smallmodal" title="Delete">
+                                            <i class="zmdi zmdi-delete  delete-icon"></i>
+                                        </button>
+
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                            <i class="zmdi zmdi-more  more-icon"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr class="spacer"></tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="modal-text">
+
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+							<button id="del-confirm" type="button" class="btn btn-danger btn-sm">Delete</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+    <script src="{% static 'adminapp/js/product_admin.js' %}"></script>
+{% endblock %}

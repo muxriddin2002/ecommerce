@@ -1,0 +1,58 @@
+<div class="single-product-wrap">
+    <div class="product-image">
+{#        <a href="{% url 'product-detail' product.id %}">#}
+            <img src="{{ product.img.url}}" height="185px">
+{#        </a>#}
+        <span class="sticker">New</span>
+    </div>
+    <div class="product_desc">
+        <div class="product_desc_info">
+            <div class="product-review">
+                <h5 class="manufacturer">
+                        <span data-quantity="{{ product.quantity }}" class="available"></span>
+                </h5>
+                <div class="rating-box">
+                    <ul class="rating">
+                        <li><i class="fa fa-star-o"></i></li>
+                        <li><i class="fa fa-star-o"></i></li>
+                        <li><i class="fa fa-star-o"></i></li>
+                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                    </ul>
+                </div>
+            </div>
+            <h4><a class="product_name" href="{% url 'product-detail' product.id %}">{{ product.name }}</a></h4>
+            <div class="price-box">
+
+                    <span data-price="{{ product.price }}"
+                          data-discount="{{ product.get_discount }}"
+                          data-discountprice="{{ product.get_price_discount }}"
+
+                          class="new-price product-price">${{ product.price }}</span>
+            </div>
+
+        </div>
+        <div class="add-actions">
+            <ul class="add-actions-link">
+
+                    <li data-cart="order"
+                        data-quantity="{{ product.quantity }}"
+                        data-action="add"
+                        class="add-cart active update-cart"
+                        data-product="{{ product.id }}">Add to cart</li>
+
+                {% if product in userCart.selected %}
+                    <li class="links-details"><i class="fa fa-heart"></i></li>
+                {% else %}
+                    <li data-cart="wishlist"
+                        data-product="{{ product.id }}"
+                        data-action="add"
+                        data-wishlist="{{ wishlist.get_selected }}"
+                        class="links-details update-cart">
+                        <i class="fa fa-heart-o"></i></li>
+                {% endif %}
+                <li class="product-detail links-details" data-toggle="modal" data-target="#exampleModalCenter" data-product="{{ product.get_info }}"><span class="quick-view"><i class="fa fa-eye"></i></span></li>
+            </ul>
+        </div>
+    </div>
+</div>

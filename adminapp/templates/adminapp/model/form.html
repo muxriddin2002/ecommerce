@@ -1,0 +1,37 @@
+{% extends 'adminapp/base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <form method="post"> {% csrf_token %}
+                   <div class="card">
+                        <div class="card-header">
+                            <strong>Normal</strong> Form
+                        </div>
+                        <div class="card-body card-block">
+
+                                {{ form | crispy }}
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary mr-4">
+                                <i class="fa fa-dot-circle-o"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">
+                                <i class="fa fa-ban"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

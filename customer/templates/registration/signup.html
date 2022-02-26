@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+    <style>
+        label {
+            font-weight: 700;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active">Register</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Li's Breadcrumb Area End Here -->
+<!-- Begin Login Content Area -->
+    <div class="page-section mb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-sm-12 col-md-12 col-lg-7 col-xs-12">
+
+                <form method="post">  {% csrf_token %}
+                    <div class="login-form">
+                        <h4 class="login-title">Register</h4>
+                        {% for i in messages %}
+                            <div class="alert alert-danger">{{ i }}</div>
+                        {% endfor %}
+                        <div class="row">
+                            <div id="input1" class="col-md-6 mb-20">
+                                <label>Username</label>
+                                {{ form.username }}
+                            </div>
+
+                             <div class="col-lg-6 mb-20">
+                                <label>Email*</label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="col-md-6 col-12 mb-20">
+                                <label>First Name</label>
+                                {{ form.first_name }}
+                            </div>
+                            <div class="col-md-6 col-12 mb-20">
+                                <label>Last Name</label>
+                                {{ form.last_name }}
+                            </div>
+                            <div class="col-md-6 mb-20">
+                                <label>Address*</label>
+                                {{ form.adress }}
+                            </div>
+
+                             <div class="col-lg-6 mb-20">
+                                <label>Phone number</label>
+                                {{ form.phone_number }}
+                            </div>
+
+                            <div class="col-md-6 mb-20">
+                                <label>Password</label>
+                                {{ form.password1 }}
+                            </div>
+                            <div class="col-md-6 mb-20">
+                                <label>Confirm Password</label>
+                                {{ form.password2 }}
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="register-button mt-0">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <script>
+        let placeholders = ['OliverS77', 'Oliver@gmail.com', 'Oliver', 'Smith', 'Nyu York', '+998 97 777 77 77', 'password', 'confirm password']
+        let inputs = document.querySelectorAll('.mb-20')
+        console.log(inputs)
+
+        for (let i = 0; i < inputs.length; i ++) {
+            inputs[i].lastElementChild.placeholder = placeholders[i]
+        }
+    </script>
+{% endblock %}
